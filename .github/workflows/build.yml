@@ -17,3 +17,9 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag geograph:develop-$(date +%s)
+
+    - name: Upload java archive
+      uses: actions/upload-artifact@v1
+      with:
+        name: geograph-archive-$(date +%s)
+        path: target/geograph*.jar
