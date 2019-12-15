@@ -1,5 +1,5 @@
 
-build
+build:
 	./mvnw clean package
 
 docker:
