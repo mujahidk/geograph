@@ -19,7 +19,14 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag geograph:develop-$(date +%s)
+      run: docker build . --file Dockerfile --tag geograph:develop
+
+    - name: Publish to Docker Hub Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: mujahidkhaleel/geograph
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Upload java archive
       uses: actions/upload-artifact@v1
